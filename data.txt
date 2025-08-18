@@ -1,0 +1,7 @@
+Api text - 4dfacfb34553215ae113d04a0989735f
+
+JWT Token - eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZGZhY2ZiMzQ1NTMyMTVhZTExM2QwNGEwOTg5NzM1ZiIsIm5iZiI6MTc1NTM0NjcwMS40MDUsInN1YiI6IjY4YTA3NzBkNjlhYzlkOTA3OGVkMTM1YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jAJUr8zfFBYGAM8Y0xxWn0xAXMQ5ZS1uDmv9jWB2we8
+
+Search Movies - https://api.themoviedb.org/3/search/movie?api_key=4dfacfb34553215ae113d04a0989735f&language=en-US&page=1&query=avatar
+
+Top rated - https://api.themoviedb.org/3/movie/top_rated?api_key=4dfacfb34553215ae113d04a0989735f&language=en-US&page=1
