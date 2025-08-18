@@ -14,7 +14,7 @@ export const MovieDetail = () => {
   
   useEffect(()=>{
     fetchMovie();
-  },[])
+  },[params.id])
   useEffect(()=>{
     document.title=`${movie.title} | Cinemate`
   },[])
@@ -61,7 +61,7 @@ export const MovieDetail = () => {
           </p>
           <p className="my-4">
             <span className="mr-2 font-bold">IMDB Code:</span>
-            <a href={`https://www.imdb.com/title/${movie.imdb_id}`} target="_blank">{movie.imdb_id}</a>
+            <a href={`https://www.imdb.com/title/${movie.imdb_id}`} rel="noreferrer" target="_blank">{movie.imdb_id}</a>
           </p>
         </div>
       </section>
