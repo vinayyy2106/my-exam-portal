@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
-import ScrollToTop from './components/ScrollToTop';
-
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-   <Router>
-     <ScrollToTop/>
-     <App />
-   </Router>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+      <Router>
+        <App />
+      </Router>
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );
 
