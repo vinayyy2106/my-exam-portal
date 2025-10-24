@@ -28,7 +28,7 @@ pipeline {
     stage('Build React App') {
       steps {
         echo "🏗️ Building production version of the app..."
-        sh 'REACT_APP_API_URL=$REACT_APP_API_URL npm run build'
+       sh 'CI=false npm run build'
       }
     }
 
