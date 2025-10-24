@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     // Use the Azure Static Web App token you saved in Jenkins credentials
-    SWA_TOKEN = credentials('swa-deploy-token')
+    SWA_TOKEN = credentials('swa-deployment-token')
   }
 
   stages {
