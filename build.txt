@@ -1,0 +1,4 @@
+commiting code to github repo
+
+jenkins-lts - to start jenkins whenever needed
+

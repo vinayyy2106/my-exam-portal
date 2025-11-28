@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 
 export const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { userdata, role } = useContext(UserContext); 
+  const {role } = useContext(UserContext); 
 
   return (
     <>

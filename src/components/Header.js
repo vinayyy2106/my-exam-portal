@@ -1,18 +1,17 @@
 import { useState, useEffect, useContext } from 'react'
 import Logo from '../assets/logo.png'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import Profile from '../assets/gifs/profile.gif';
+import { Link, useNavigate } from 'react-router-dom'
 import { Initialavatars } from './Initialavatars';
 import { UserContext } from '../context/UserContext';
 import { CiLogout } from "react-icons/ci";
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
 
 export const Header = ({ setSidebarOpen }) => {
     const { userData,role } = useContext(UserContext);
     // const profileImageUrl = null;
     // const active = "block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500";
     // const notActive = "block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700";
-    const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || true);
+    const [darkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || true);
     useEffect(() => {
         localStorage.setItem("darkMode", JSON.stringify(darkMode));
         darkMode === true ? document.documentElement.classList.add("dark") : document.documentElement.classList.remove("dark");
@@ -54,7 +53,7 @@ export const Header = ({ setSidebarOpen }) => {
                                     autoComplete="off" placeholder="Search..." />
                             </form>
                         </div>
-                        {role!="ADMIN" && <button
+                        {role!=="ADMIN" && <button
                             className="md:hidden text-2xl px-3 text-white"
                             onClick={() => setSidebarOpen(true)}
                             aria-label="Open sidebar"

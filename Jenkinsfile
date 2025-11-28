@@ -2,6 +2,8 @@ pipeline {
   agent any   // Runs on any Jenkins agent (your local machine in this case)
 
   environment {
+    REACT_APP_GOOGLE_CLIENT_ID = credentials('google-client-id')
+    REACT_APP_ENCRYPTION_KEY   = credentials('encryption-key')
     // Use the Azure Static Web App token you saved in Jenkins credentials
     SWA_TOKEN = credentials('swa-deployment-token')
   }

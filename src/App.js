@@ -1,8 +1,7 @@
-import logo from './logo.svg';
+
 import './App.css';
 import AppRoutes from './routes/AppRoutes';
-import { Footer, Header } from './components';
-import { useLocation } from 'react-router-dom';
+
 import { ToastContainer } from 'react-toast';
 import { UserProvider } from './context/UserContext';
 

@@ -1,13 +1,8 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import { ExamChoiceModal } from '../components/ExamChoiceModal';
 
 export const AdminDashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
-  const navigateToNew = () => {
-    navigate("/admin/upload-exam")
-  }
   return (
     <div>
       <div className="px-4 md:px-8 max-w-screen-xl mx-auto w-full text-white">

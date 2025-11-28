@@ -1,19 +1,11 @@
-import React from 'react'
-import { Fragment, useState } from "react";
+
+import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useNavigate } from "react-router-dom";
 import { Upload, FileText } from "lucide-react";
 
 export const ExamChoiceModal = ({ isOpen, setIsOpen }) => {
   const navigate = useNavigate();
-
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      console.log("File selected:", file);
-      setIsOpen(false);
-    }
-  };
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={() => setIsOpen(false)}>
