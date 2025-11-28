@@ -60,21 +60,27 @@ pipeline {
 
     // 3️⃣ Build React app with environment variables
     stage('Build React App') {
-      steps {
-        echo "🏗️ Building production version of the app..."
-        sh '''
-          export NVM_DIR="$HOME/.nvm"
-          . "$NVM_DIR/nvm.sh"
-          nvm use 18
+  steps {
+    echo "🏗️ Building production version of the app..."
 
-          # Export environment variables for React
-          export REACT_APP_GOOGLE_CLIENT_ID="${REACT_APP_GOOGLE_CLIENT_ID}"
-          export REACT_APP_ENCRYPTION_KEY="${REACT_APP_ENCRYPTION_KEY}"
+    withEnv([
+      "REACT_APP_GOOGLE_CLIENT_ID=${REACT_APP_GOOGLE_CLIENT_ID}",
+      "REACT_APP_ENCRYPTION_KEY=${REACT_APP_ENCRYPTION_KEY}"
+    ]) {
+      sh '''
+        export NVM_DIR="$HOME/.nvm"
+        . "$NVM_DIR/nvm.sh"
+        nvm use 18
 
-          CI=false npm run build
-        '''
-      }
+        echo "Using GOOGLE CLIENT ID: $REACT_APP_GOOGLE_CLIENT_ID"
+        echo "Using ENCRYPTION KEY: $REACT_APP_ENCRYPTION_KEY"
+
+        CI=false npm run build
+      '''
     }
+  }
+}
+
 
     // 4️⃣ Install SWA CLI
     stage('Setup SWA CLI') {
