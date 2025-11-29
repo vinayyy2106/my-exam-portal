@@ -58,7 +58,7 @@ export const Login = () => {
   const sendOtp = async () => {
     try {
       setLoading(true);
-      await axios.post("http://4.213.163.165:8090/user/send-otp-forget-password", { userName: forgotEmail }, {
+      await axios.post("https://onlineproctoring.duckdns.org/user/send-otp-forget-password", { userName: forgotEmail }, {
         headers: {
           "Content-Type": "application/json",
         }
@@ -75,7 +75,7 @@ export const Login = () => {
   const verifyOtp = async () => {
     try {
       setLoading(true);
-      await axios.post("http://4.213.163.165:8090/user/verify-otp-forget-password", { userName: forgotEmail, providedOtp: otp }, {
+      await axios.post("https://onlineproctoring.duckdns.org/user/verify-otp-forget-password", { userName: forgotEmail, providedOtp: otp }, {
         headers: {
           "Content-Type": "application/json",
         }
@@ -98,7 +98,7 @@ export const Login = () => {
       try {
         setLoading(true);
         const response = await axios.post(
-          "http://4.213.163.165:8090/user/register",
+          "https://onlineproctoring.duckdns.org/user/register",
           signupData,
           {
             headers: {
@@ -119,7 +119,7 @@ export const Login = () => {
       try {
       setLoading(true);
       const loginResponse = await axios.post(
-        "http://4.213.163.165:8090/user/login",
+        "https://onlineproctoring.duckdns.org/user/login",
         loginData,
         {
           headers: {
@@ -132,7 +132,7 @@ export const Login = () => {
       sessionStorage.setItem("jwt", encryptedToken);
       toast.success("Sign in successful!");
       const profileResponse = await axios.get(
-        "http://4.213.163.165:8090/user/logged-in-user-profile",
+        "https://onlineproctoring.duckdns.org/user/logged-in-user-profile",
         {
           headers: {
             "Content-Type": "application/json",
@@ -331,7 +331,7 @@ export const Login = () => {
                     // await setToken()
                     try {
                       const response = await axios.post(
-                        "http://4.213.163.165:8090/auth/oauth/google",
+                        "https://onlineproctoring.duckdns.org/auth/oauth/google",
                         { tokenId: credentialRespons.credential },
                         {
                           headers: {

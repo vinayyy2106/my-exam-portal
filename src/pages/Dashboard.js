@@ -50,7 +50,7 @@ export const Dashboard = () => {
       setLoadingCurrent(true);
       const token = decryptData(sessionStorage.getItem("jwt"));
       const response = await axios.post(
-        `http://4.213.163.165:8090/exam/fetch-ongoing-exams?pageNumber=${page}&pageSize=${PAGE_SIZE}`,
+        `https://onlineproctoring.duckdns.org/exam/fetch-ongoing-exams?pageNumber=${page}&pageSize=${PAGE_SIZE}`,
         {},
         {
           headers: {
@@ -82,7 +82,7 @@ export const Dashboard = () => {
       const token = decryptData(sessionStorage.getItem("jwt"));
 
       const response = await axios.post(
-        `http://4.213.163.165:8090/exam/fetch-upcoming-exams?pageNumber=${page}&pageSize=${PAGE_SIZE}`,
+        `https://onlineproctoring.duckdns.org/exam/fetch-upcoming-exams?pageNumber=${page}&pageSize=${PAGE_SIZE}`,
         {},
         {
           headers: {

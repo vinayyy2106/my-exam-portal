@@ -89,7 +89,7 @@ export const NewTest = () => {
         formData.append("questionAnswerAttachment", selectedFile);
 
         const response = await axios.post(
-          "http://4.213.163.165:8090/exam/create-exam",
+          "https://onlineproctoring.duckdns.org/exam/create-exam",
           formData,
           {
             headers: {
@@ -103,7 +103,7 @@ export const NewTest = () => {
         console.log("Excel Upload Response:", response.data);
       } else {
         const response = await axios.post(
-          "http://4.213.163.165:8090/exam/create-exam",
+          "https://onlineproctoring.duckdns.org/exam/create-exam",
           testData,
           {
             headers: {
