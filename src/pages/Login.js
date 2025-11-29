@@ -20,7 +20,7 @@ export const Login = () => {
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const { setUserdata } = useContext(UserContext);
-  const {setRole}=useContext(UserContext)
+  const { setRole } = useContext(UserContext)
   const [loginData, setLoginData] = useState({
     userName: "",
     password: "",
@@ -117,49 +117,49 @@ export const Login = () => {
       }
     } else {
       try {
-      setLoading(true);
-      const loginResponse = await axios.post(
-        "https://onlineproctoring.duckdns.org/user/login",
-        loginData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log("Login Success:", loginResponse.data);
-      const encryptedToken = encryptKey(loginResponse.data.data);
-      sessionStorage.setItem("jwt", encryptedToken);
-      toast.success("Sign in successful!");
-      const profileResponse = await axios.get(
-        "https://onlineproctoring.duckdns.org/user/logged-in-user-profile",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + decryptData(sessionStorage.getItem("jwt")),
-          },
-        }
-      );
-      console.log("Profile fetched:", profileResponse.data);
-      const userProfile = profileResponse.data.data;
-      setUserdata(userProfile);
+        setLoading(true);
+        const loginResponse = await axios.post(
+          "https://onlineproctoring.duckdns.org/user/login",
+          loginData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log("Login Success:", loginResponse.data);
+        const encryptedToken = encryptKey(loginResponse.data.data);
+        sessionStorage.setItem("jwt", encryptedToken);
+        toast.success("Sign in successful!");
+        const profileResponse = await axios.get(
+          "https://onlineproctoring.duckdns.org/user/logged-in-user-profile",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + decryptData(sessionStorage.getItem("jwt")),
+            },
+          }
+        );
+        console.log("Profile fetched:", profileResponse.data);
+        const userProfile = profileResponse.data.data;
+        setUserdata(userProfile);
 
-      const role = userProfile.role;
-      // let role="ADMIN";
-      // role="USER"
-      setRole(role);
-      sessionStorage.setItem("role", role);
-      if (role === "ADMIN") {
-        navigate("/admin-dashboard", { replace: true });
-      } else {
-        navigate("/home", { replace: true });
+        const role = userProfile.role;
+        // let role="ADMIN";
+        // role="USER"
+        setRole(role);
+        sessionStorage.setItem("role", role);
+        if (role === "ADMIN") {
+          navigate("/admin-dashboard", { replace: true });
+        } else {
+          navigate("/home", { replace: true });
+        }
+      } catch (error) {
+        toast.error("Sign in failed: " + (error.response?.data?.message || error.message));
+        console.error("Sign in failed:", error.response?.data || error.message);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      toast.error("Sign in failed: " + (error.response?.data?.message || error.message));
-      console.error("Sign in failed:", error.response?.data || error.message);
-    } finally {
-      setLoading(false);
-    }
     }
   }
   return (
@@ -330,6 +330,7 @@ export const Login = () => {
                     console.log(jwtDecode(credentialRespons.credential))
                     // await setToken()
                     try {
+                      setLoading(true);
                       const response = await axios.post(
                         "https://onlineproctoring.duckdns.org/auth/oauth/google",
                         { tokenId: credentialRespons.credential },
@@ -343,10 +344,38 @@ export const Login = () => {
                       const encryptedToken = encryptKey(response.data.data)
                       sessionStorage.setItem("jwt", encryptedToken)
                       toast.success("Sign in successful!")
-                      navigate("/home", { replace: true })
+                      console.log("NAVIGATING TO /home NOW...");
+                      //----
+                      const profileResponse = await axios.get(
+                        "https://onlineproctoring.duckdns.org/user/logged-in-user-profile",
+                        {
+                          headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": "Bearer " + decryptData(sessionStorage.getItem("jwt")),
+                          },
+                        }
+                      );
+                      console.log("Profile fetched:", profileResponse.data);
+                      const userProfile = profileResponse.data.data;
+                      setUserdata(userProfile);
+
+                      const role = userProfile.role;
+                      // let role="ADMIN";
+                      // role="USER"
+                      setRole(role);
+                      sessionStorage.setItem("role", role);
+                      if (role === "ADMIN") {
+                        navigate("/admin-dashboard", { replace: true });
+                      } else {
+                        navigate("/home", { replace: true });
+                      }
+                      //----
+                      // navigate("/home", { replace: true })
                     } catch (error) {
                       toast.error("Sign in failed: " + (error.response?.data?.message || error.message))
                       console.error("Sign in failed:", error.response?.data || error.message)
+                    }finally{
+                      setLoading(false);
                     }
                   }}
                   onError={(error) => console.log(error)}
