@@ -125,7 +125,7 @@ export const Dashboard = () => {
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4">
           <Initialavatars
             name={userData?.fullName || "Loading.."}
-            imageUrl={userData?.gender === "Male" ? Man : Female}
+            imageUrl={userData?.avatarUrl ==null ? Man : userData.avatarUrl}
             size={70}
           />
           <div>
@@ -133,7 +133,7 @@ export const Dashboard = () => {
               {userData?.userName || "Loading.."}
             </div>
             <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-              Student ID: EXM-2024-001
+              Student ID: EXM-2026-{userData?.userId}
             </div>
           </div>
           

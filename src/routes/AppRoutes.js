@@ -5,6 +5,9 @@ import { Layout } from '../components'
 import { AdminDashboard } from '../pages/AdminDashboard'
 import NewTest from '../pages/NewTest'
 import { PrivateRoute } from './PrivateRoute'
+import { Terms } from '../components/Terms'
+import { Privacy } from '../components/Privacy'
+import { NotFound } from '../components/NotFound'
 const AppRoutes = () => {
   // const navigate=useNavigate();
   // useEffect(() => {
@@ -47,6 +50,9 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path={"*" || "/not-found"} element={<NotFound />} />
       </Routes>
     </div>
 

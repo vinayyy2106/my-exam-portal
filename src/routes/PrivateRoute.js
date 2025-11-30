@@ -5,10 +5,10 @@ export const PrivateRoute=({children,allowedRoutes=[]})=> {
   const token = sessionStorage.getItem("jwt");
   const role = sessionStorage.getItem("role");
   if(!token){
-    return <Navigate to="/" replace/>
+    return <Navigate to="/not-found" replace/>
   }
   if(allowedRoutes.length>0 && !allowedRoutes.includes(role)){
-    return <Navigate to="/" replace />;
+    return <Navigate to="/not-found" replace />;
   }
   return children;
 }

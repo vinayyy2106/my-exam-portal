@@ -1,6 +1,6 @@
 import { GoogleLogin, googleLogout } from '@react-oauth/google'
 import { jwtDecode } from 'jwt-decode'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState, useContext } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toast'
@@ -29,7 +29,7 @@ export const Login = () => {
     fullName: "",
     email: "",
     mobileNumber: "",
-    gender: "",
+    photo: null,
   });
   const encryptionKey = process.env.REACT_APP_ENCRYPTION_KEY;
   const navigate = useNavigate();
@@ -94,28 +94,38 @@ export const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     if (isSignUp) {
       try {
         setLoading(true);
+
+        const formData = new FormData();
+        formData.append("fullName", signupData.fullName);
+        formData.append("email", signupData.email);
+        formData.append("mobileNumber", signupData.mobileNumber);
+        formData.append("photo", signupData.photo);
+
         const response = await axios.post(
           "https://onlineproctoring.duckdns.org/user/register",
-          signupData,
+          formData,
           {
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": "multipart/form-data",
             }
           }
         );
-        console.log("Signup Success:", response.data);
+        console.log(response);
         toast.success("Sign up successful!");
-        setIsSignUp(!isSignUp);
+        setIsSignUp(false);
+
       } catch (error) {
         toast.error("Sign up failed: " + (error.response?.data?.message || error.message));
-        console.error("Signup failed:", error.response?.data || error.message);
       } finally {
         setLoading(false);
       }
-    } else {
+    }
+
+    else {
       try {
         setLoading(true);
         const loginResponse = await axios.post(
@@ -259,7 +269,8 @@ export const Login = () => {
                       placeholder="Enter your number"
                       value={signupData.mobileNumber}
                       onChange={handleSignupChange} />
-                  </div><div className="mb-4">
+                  </div>
+                  {/* <div className="mb-4">
                     <label className="block text-gray-300 mb-2" htmlFor="confirmPassword">Gender</label>
                     <input
                       name="gender"
@@ -268,6 +279,27 @@ export const Login = () => {
                       placeholder="Enter your gender"
                       value={signupData.gender}
                       onChange={handleSignupChange} />
+                  </div> */}
+                  <div className="mb-4">
+                    <label className="block text-gray-300 mb-2">Upload Photo</label>
+
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="w-full px-3 py-2 rounded bg-gray-700 text-white focus:outline-none"
+                      onChange={(e) => setSignupData({
+                        ...signupData,
+                        photo: e.target.files[0]
+                      })}
+                    />
+
+                    {signupData.photo && (
+                      <img
+                        src={URL.createObjectURL(signupData.photo)}
+                        alt="preview"
+                        className="mt-3 w-24 h-24 rounded-full object-cover border-gray-600"
+                      />
+                    )}
                   </div>
                 </>
               ) : (<>
@@ -374,14 +406,14 @@ export const Login = () => {
                     } catch (error) {
                       toast.error("Sign in failed: " + (error.response?.data?.message || error.message))
                       console.error("Sign in failed:", error.response?.data || error.message)
-                    }finally{
+                    } finally {
                       setLoading(false);
                     }
                   }}
                   onError={(error) => console.log(error)}
                   auto_select={true} />
               </div><p className="mt-4 text-center text-xs text-gray-400">
-                By signing in, you agree to ExamPortal’s <a href="#" className="underline">Terms of Service</a> and <a href="#" className="underline">Privacy Policy</a>.
+                By signing in, you agree to ExamPortal’s <Link to="/terms" className="underline">Terms of Service</Link> and <Link to="/privacy" className="underline">Privacy Policy</Link>.
               </p></>
           )}
         </div>
