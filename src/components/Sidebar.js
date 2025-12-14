@@ -6,52 +6,6 @@ export const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
 const activeClass = "bg-gray-300 text-black dark:bg-gray-700 dark:text-white";
 
     return (
-        // <aside className="bg-white dark:bg-gray-900 text-white w-full md:w-64 min-h-screen p-5 pt-2 flex flex-col space-y-1 border border-gray-700 rounded-sm">
-        //     <div className="flex-1 flex flex-col space-y-1">
-        //         <NavLink
-        //             to="/home"
-        //             className={({ isActive }) => (isActive ? `${linkClass} ${activeClass}` : linkClass)}
-        //         >
-        //             <FaTachometerAlt size={15} />
-        //             <span>Dashboard</span>
-        //         </NavLink>
-
-        //         <NavLink
-        //             to="/exams"
-        //             className={({ isActive }) => (isActive ? `${linkClass} ${activeClass}` : linkClass)}
-        //         >
-        //             <FaFileAlt size={15} />
-        //             <span>Exams</span>
-        //         </NavLink>
-
-        //         <NavLink
-        //             to="/results"
-        //             className={({ isActive }) => (isActive ? `${linkClass} ${activeClass}` : linkClass)}
-        //         >
-        //             <FaListUl size={15} />
-        //             <span>Results</span>
-        //         </NavLink>
-
-        //         <NavLink
-        //             to="/profile"
-        //             className={({ isActive }) => (isActive ? `${linkClass} ${activeClass}` : linkClass)}
-        //         >
-        //             <FaUserCircle size={15} />
-        //             <span>Profile</span>
-        //         </NavLink>
-        //     </div>
-
-        //     <div className="mt-auto pt-4">
-        //         <button
-        //             onClick={() => alert("Account Settings clicked")}
-        //             className="flex items-center space-x-2 text-gray-800 hover:text-white hover:bg-gray-700 rounded px-2 py-2 w-full transition dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700"
-        //         >
-        //             <FaCog size={16} />
-        //             <span className="text-xs">Account Settings</span>
-        //         </button>
-        //     </div>
-
-        // </aside>
         <>
             <div
                 className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 md:hidden ${sidebarOpen ? 'block' : 'hidden'}`}

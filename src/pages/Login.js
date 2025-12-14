@@ -98,13 +98,11 @@ export const Login = () => {
     if (isSignUp) {
       try {
         setLoading(true);
-
         const formData = new FormData();
         formData.append("fullName", signupData.fullName);
         formData.append("email", signupData.email);
         formData.append("mobileNumber", signupData.mobileNumber);
         formData.append("photo", signupData.photo);
-
         const response = await axios.post(
           "https://onlineproctoring.duckdns.org/user/register",
           formData,

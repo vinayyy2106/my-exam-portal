@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 import { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children , val}) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const {role } = useContext(UserContext); 
 
@@ -12,7 +12,7 @@ export const Layout = ({ children }) => {
     <>
       <Header setSidebarOpen={setSidebarOpen} />
       <div className="flex flex-col md:flex-row min-h-screen w-full bg-gray-100 dark:bg-gray-900">
-        {role !== "ADMIN" && (
+        {role !== "ADMIN" && val && (
           <div className="w-full md:w-64 flex-shrink-0">
             <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           </div>
