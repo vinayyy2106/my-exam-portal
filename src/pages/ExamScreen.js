@@ -182,7 +182,17 @@ export const ExamScreen = () => {
     return (
         <div className="min-h-screen bg-gray-800 text-gray-200">
             <div className="flex gap-4 p-4 w-full">
-                <div className="w-22 sm:w-24 md:w-28 bg-gray-900 rounded-lg p-2 flex flex-col items-center gap-3">
+                <div
+                    className="
+    w-22 sm:w-24 md:w-28
+    bg-gray-900 rounded-lg p-2
+    flex flex-col items-center gap-3
+    max-h-[calc(100vh-120px)]
+    overflow-y-auto
+    scrollbar-thin scrollbar-thumb-gray-600
+  "
+                >
+
                     {questions.map((_, i) => (
                         <button
                             key={i}
